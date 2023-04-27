@@ -41,6 +41,8 @@ int print_upper_base16(va_list args, char buf[],
 	int flags, int width, int precision, int size);
 int print_16(va_list args, char map[], char buf[],
 	int flags, char spec, int width, int precision, int size);
+int print_pointer(va_list args, char buf[],
+	int flags, int width, int precision, int size);
 
 int write_char(char ch, char buf[], int precision, int width, int flag, int size);
 int write_int(int negative_bool, int ind, char buf[], int precision, int width, int size, int flag);
