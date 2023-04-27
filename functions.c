@@ -128,29 +128,29 @@ int print_integer(va_list args, char buf[], int flag, int width, int precision, 
 	return (write_int(negative_bool, a, buf, precision, width, size, flag));
 }
 /**
- * print_binary - Prints an unsigned number
- * @types: Lista of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width.
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Numbers of char printed.
+ * print_binary - Prints unsigned
+ * @args: variable arguments
+ * @buf: Buffer
+ * @flags: flags
+ * @width: width.
+ * @precision: Precision
+ * @size: Size
+ * Return: count of char printed.
  */
-int print_binary(va_list types, char buffer[],
+int print_binary(va_list args, char buf[],
 	int flags, int width, int precision, int size)
 {
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
 	int count;
 
-	(void)(buffer);
+	(void)(buf);
 	(void)(flags);
 	(void)(width);
 	(void)(precision);
 	(void)(size);
 
-	n = va_arg(types, unsigned int);
+	n = va_arg(args, unsigned int);
 	m = 2147483648; /* (2 ^ 31) */
 	a[0] = n / m;
 	for (i = 1; i < 32; i++)
