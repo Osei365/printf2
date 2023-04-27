@@ -1,53 +1,53 @@
 #include "main.h"
 
-/****************** PRINT POINTER ******************/
 /**
- * print_pointer - Prints the value of a pointer variable
- * @types: List a of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Number of chars printed.
+ * print_pointer - Prints a pointer variable
+ * @args: variable argument
+ * @buf: Buffer
+ * @flags:  flags
+ * @width: width
+ * @precision: Precision
+ * @size: Size
+ * Return: count of chars printed.
  */
-int print_pointer(va_list types, char buffer[],
+int print_pointer(va_list args, char buf[],
 	int flags, int width, int precision, int size)
 {
-	char extra_c = 0, padd = ' ';
-	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; /* length=2, for '0x' */
-	unsigned long num_addrs;
-	char map_to[] = "0123456789abcdef";
-	void *addrs = va_arg(types, void *);
+	char ch = 0, padding = ' ';
+	int i = BUFF_SIZE - 2, l = 2, padding_st = 1;
+	unsigned long num_ptrs;
+	char map[] = "0123456789abcdef";
+	void *ptrs = va_arg(args, void *);
 
-	UNUSED(width);
-	UNUSED(size);
+	(void)(width);
+	(void)(size);
 
-	if (addrs == NULL)
+	if (ptrs == NULL)
 		return (write(1, "(nil)", 5));
 
-	buffer[BUFF_SIZE - 1] = '\0';
-	UNUSED(precision);
+	buf[BUFF_SIZE - 1] = '\0';
+	(void)(precision);
 
-	num_addrs = (unsigned long)addrs;
+	num_ptrs = (unsigned long)ptrs;
 
-	while (num_addrs > 0)
+	for (; num_ptrs > 0; num_ptrs /= 16, l++)
 	{
-		buffer[ind--] = map_to[num_addrs % 16];
-		num_addrs /= 16;
-		length++;
+		buf[i--] = map[num_ptrs % 16];
 	}
 
-	if ((flags & F_ZERO) && !(flags & F_MINUS))
-		padd = '0';
-	if (flags & F_PLUS)
-		extra_c = '+', length++;
-	else if (flags & F_SPACE)
-		extra_c = ' ', length++;
-
-	ind++;
-
-	/*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
-	return (write_pointer(buffer, ind, length,
-		width, flags, padd, extra_c, padd_start));
+	if ((flags & 4) && !(flags & 1))
+		padding = '0';
+	if (flags & 2)
+	{
+		ch = '+';
+		l++;
+	}
+	else if (flags & 16)
+	{
+		ch = ' ';
+		l++;
+	}
+	i++;
+	return (write_pointer(buf, i, l,
+		width, flags, padding, ch, padding_st));
 }
