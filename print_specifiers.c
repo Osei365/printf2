@@ -13,7 +13,10 @@ int print_spec(const char *format, int *i, va_list args, char buf[],
 	int chars_num = -1, a, add_len = 0;
 	sp_f specifiers[] = {
 		{'c', print_char}, {'%', print_percentage}, {'s', print_string},
-		{'d', print_integer}, {'i', print_integer}, {'\0', NULL}
+		{'d', print_integer}, {'i', print_integer}, {'u', print_unsigned},
+		{'o', print_base8}, {'x', print_base16}, {'X', print_upper_base16},
+		{'p', print_pointer}, {'S', print_non_printable}, {'r', print_reverse},
+		{'R', print_rot13string}, {'\0', NULL}
 	};
 
 	for (a = 0; specifiers[a].sp != '\0'; a++)
