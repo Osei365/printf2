@@ -4,7 +4,7 @@
  * is_printable - checks if char is printable
  * @ch: Char
  *
- * Return: 1 if c is printable, 0 else
+ * Return: 1 or 0
  */
 int is_printable(char ch)
 {
@@ -15,12 +15,12 @@ int is_printable(char ch)
 }
 
 /**
- * append_hexa_code - Append ascci in hexadecimal code to buffer
+ * append_hexa_code - Append ascii in base16 code to buffer
  * @buf: Array of chars.
- * @ind: Index at which to start appending.
- * @ascii_code: ASSCI CODE.
+ * @ind: Index
+ * @ascii_code: ASCII CODE.
  *
- * Return: Always 3
+ * Return: 3
  */
 int append_hexa_code(char ascii_code, char buf[], int ind)
 {
@@ -38,10 +38,11 @@ int append_hexa_code(char ascii_code, char buf[], int ind)
 }
 
 /**
- * is_digit - Verifies if a char is a digit
+ * is_digit - checks if a character is
+ * a digit
  * @ch: Char to be evaluated
  *
- * Return: 1 if c is a digit, 0 otherwise
+ * Return: 1 or 0
  */
 int is_digit(char ch)
 {
@@ -52,35 +53,35 @@ int is_digit(char ch)
 }
 
 /**
- * convert_size_number - Casts a number to the specified size
- * @num: Number to be casted.
- * @size: Number indicating the type to be casted.
+ * convert_size_number - converts number to indicated size
+ * @n: Number
+ * @size: size
  *
- * Return: Casted value of num
+ * Return: converted value
  */
-long int convert_size_number(long int num, int size)
+long int convert_size_number(long int n, int size)
 {
 	if (size == 2)
-		return (num);
+		return (n);
 	else if (size == 1)
-		return ((short)num);
+		return ((short)n);
 
-	return ((int)num);
+	return ((int)n);
 }
 
 /**
- * convert_size_unsgnd - Casts a number to the specified size
- * @num: Number to be casted
- * @size: Number indicating the type to be casted
+ * convert_size_unsgnd - converts to given size
+ * @n: Number
+ * @size: size
  *
- * Return: Casted value of num
+ * Return: converted number
  */
-long int convert_size_unsgnd(unsigned long int num, int size)
+long int convert_size_unsgnd(unsigned long int n, int size)
 {
 	if (size == 2)
-		return (num);
+		return (n);
 	else if (size == 1)
-		return ((unsigned short)num);
+		return ((unsigned short)n);
 
-	return ((unsigned int)num);
+	return ((unsigned int)n);
 }
